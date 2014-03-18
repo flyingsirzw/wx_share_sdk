@@ -1,10 +1,10 @@
-###FAQ
-####开发者须知
+#FAQ
+##开发者须知
 
-#####AppID审核的速度、流程
+###AppID审核的速度、流程
 三个工作日内完成审核。目前应用登记审核只审核开发者的资质和真实性，一般不涉及应用内容本身，不需要开发者提交ipa文件或将含微信SDK的版本在AppStore上线后再审核，但要求开发者提供该应用已经上线的版本的下载地址。
 
-AppID注册数据限制
+###AppID注册数据限制
 一个开发者账号现已允许登记十个应用。
 应用名称规范
 同一应用在不同平台的版本应共用一个AppID，请不要在应用名称中出现平台相关字样（例如：XXX应用Android版）。
@@ -17,12 +17,15 @@ AppID注册数据限制
 暂缓开放。未获取权限的应用无法访问OAuth接口。App提供发送到朋友圈的功能请使用SDK直接跳转的形式，详细实现请参见对应平台的上手指南说明和Demo演示。
 通用问题
 
+-----------------
+|--------------|----------------|
 
 Q：为什么iOS7下面微信旧版SDK无法进行分享
 A：iOS 应用之间共享数据常见的几种方法：
-1、URL Scheme 应用可以通过构造URL，将数据作为URL的参数传递给其他应用。
-2、UIPasterboard 不同应用之间通过粘贴板进行数据共享。UIPasterboard主要分为2种:custom pasterboard(自定义粘贴板)以及general pasterboard(通用粘贴板)。custom pasterboard由应用程序创建，由一个name标识，可以任意创建。general pasterboard全局唯一，所有应用共用，任何应用往该粘贴板写入数据都会覆盖之前的数据。
-微信通过URL Scheme和UIPasterboard来与第三方应用之间进行交互以及数据共享。
+*1、URL Scheme 应用可以通过构造URL，将数据作为URL的参数传递给其他应用。
+*2、UIPasterboard 不同应用之间通过粘贴板进行数据共享。UIPasterboard主要分为2种:custom pasterboard(自定义粘贴板)以及general pasterboard(通用粘贴板)。custom pasterboard由应用程序创建，由一个name标识，可以任意创建。general pasterboard全局唯一，所有应用共用，任何应用往该粘贴板写入数据都会覆盖之前的数据。
+
+*微信通过URL Scheme和UIPasterboard来与第三方应用之间进行交互以及数据共享。
 由于iOS7禁止不同应用之间使用自定义粘贴板，导致了第三方应用在iOS7下分享消息到微信失败。
 SDK1.4.2配合微信5.0.1 使用通用粘贴板替代了自定义粘贴板解决iOS7下分享失败。
 
@@ -78,4 +81,4 @@ A：这里是由于身份校验失败造成的，要运行SDK Demo工程，可以参考文档《如何运行SDK D
 
 Q：为什么日志里面有时候会出现setup profile from amm_manifest.xml failed错误？
 A：这是由于SDK加载内部配置文件失败造成的，不影响SDK的正常使用，可以忽略这个错误日志。
-更多问题，请邮件联系 weixinapp@qq.com 或关注官方微博 http://t.qq.com/weixin_app 的最新动态。
+**更多问题，请邮件联系 weixinapp@qq.com 或关注官方微博 http://t.qq.com/weixin_app 的最新动态。
