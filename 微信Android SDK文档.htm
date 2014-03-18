@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>微信Android SDK文档</title>
+<style type="text/css">
+* {margin: 0; padding:0;}
+html, body { height:100%; overflow: hidden; background: #EBEDF0; font: 14px/1.5 Helvtica,Lucida Grande,Verdana,Geneva,Arial,sans-serif;  }
+#header { height: 104px; border-bottom: 1px solid #ccc; }
+#header .logo { float:left; padding: 15px 15px 15px 10px; }
+#header .projectname { float:left; font: normal 30px/104px Tahoma,Arial,sans-serif; text-shadow:0 1px 1px #fff; }
+#contentFrame { width: 100%; }
+#footer { height: 30px; }
+</style>
+</head>
+<body>
+<div id="header">
+	<img class="logo" src="resources/micro_messenger.png" alt="Logo">
+	<h1 class="projectname">
+		微信Android SDK文档
+   </h1>
+</div>
+<div id="content">
+	<iframe id="contentFrame" src="index2.html" frameborder="0">
+	</iframe>
+</div>
+<div id="footer"></div>
+
+<script type="text/javascript">
+function layout() {
+var contentFrame = document.getElementById('contentFrame'),
+	header = document.getElementById('header'),
+	footer = document.getElementById('footer');
+var resizeContent = function() {
+	//console.log(document.documentElement.offsetHeight +' '+ header.offsetHeight +' '+ footer.offsetHeight)
+    contentFrame.style['height'] = document.documentElement.offsetHeight - header.offsetHeight - footer.offsetHeight + 'px';
+    contentFrame.contentWindow.document.getElementsByTagName("frameset")[0].style.height = "100%";
+	}
+return resizeContent();
+};
+window.onload = window.onresize = function() {
+	new layout();
+}
+</script>
+</body>
+</html>

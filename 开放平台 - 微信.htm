@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf8"/>
+<title>开放平台 - 微信</title>
+
+<script type="text/javascript" src="/static/lib/js/jquery.js?v=1375841708"></script>
+<script type="text/javascript" src="/static/lib/js/utils.js?v=1375841708"></script>
+<script type="text/javascript" src="/msginfo/?v=1389768864&lang=zh_CN"></script>
+<script type="text/javascript">
+var lang = 'zh_CN';
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="/static/zh_CN/app/css/open.css?v=1383899448" />
+<link rel="stylesheet" type="text/css" href="/static/zh_CN/app/css/SpryCollapsiblePanel.css?v=1375841700" />
+</head>
+<body>
+<div class="messagelist"></div>
+<div class="container">
+<div class="header">
+<div class="logo"><a href="/"><img src="/static/zh_CN/app/images/logo.zh_CN.png" /></a></div>
+
+<ul class="navigator">
+<li><a href="/?lang=zh_CN" class="navHome "><img src="/static/lib/images/spacer.gif" alt="首页" />首页</a></li>
+<li><a href="/intro/?lang=zh_CN" class="navIntro "><img src="/static/lib/images/spacer.gif" alt="了解微信开放平台" />简介</a></li>
+<li><a href="/app/list/?lang=zh_CN" class="navDeveloper "><img src="/static/lib/images/spacer.gif" alt="开发者" />开发者</a></li>
+<li><a href="/document/?lang=zh_CN" class="navDocument  current "><img src="/static/lib/images/spacer.gif" alt="文档" />文档</a></li>
+<li><a href="/faq/?lang=zh_CN" class="navDocument "><img src="/static/lib/images/spacer.gif" alt="FAQ" />FAQ</a></li>
+<li><a href="/download/?lang=zh_CN" class="navDownload "><img src="/static/lib/images/spacer.gif" alt="下载" />下载</a></li>
+</ul>
+<div class="clr"></div>
+</div>
+
+<div class="content">
+
+<div class="document">
+<div class="articleTitle normalTitle" >
+<h2>微信Android终端SDK新手使用指南</h2>
+</div>
+<div class="articleContent catalogHome normalContent" >
+<div class="section textGray">
+<p>注：本文为微信Android终端开发工具的新手使用教程，只涉及教授SDK的使用方法，默认读者已经熟悉IDE的基本使用方法（本文以Eclipse为例），以及具有一定的编程知识基础等。</p>
+</div>
+<div class="section">
+<h4>1.申请你的AppID</h4>
+<p >
+请到 <a href="/app/list/?lang=zh_CN" target="_blank">开发者应用登记页面</a> 进行登记，登记并选择移动应用进行设置后，将该应用提交审核，只有审核通过的应用才能进行开发。
+</p>
+</div>
+<div class="section">
+<h4>2.下载微信终端开发工具包</h4>
+<p>
+开发工具包主要包含3部分内容：（其中，只有libammsdk.jar是必须的）
+</p>
+<ul class="alpha">
+<li>
+libammsdk.jar（每个第三方应用必须要导入该sdk库，用于实现与微信的通信）
+</li>
+<li>
+API文档（供开发者查阅使用）
+</li>
+<li>
+界面小工具源码（封装了界面表现的工具类，以及一些界面风格）
+</li>
+</ul>
+<p>
+下载：
+<a href="/download/sdk/wechat_sdk_android.zip">Android平台开发工具包</a>
+</p>
+</div>
+<div class="section">
+<h4>3.搭建开发环境</h4>
+<p>
+[1] 在Eclipse中建立你的工程。
+</p>
+<p>
+[2] 在工程中新建一个libs目录，将开发工具包中libs目录下的libammsdk.jar复制到该目录中（如下图所示，建立了一个名为SDK_Sample 的工程，并把jar包复制到libs目录下）。
+</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image001.png" />
+</p>
+<p>
+[3] 右键单击工程，选择Build Path中的Configure Build Path...，选中Libraries这个tab，并通过Add Jars...导入工程libs目录下的libammsdk.jar文件。（如下图所示）。
+</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image002.png"/>
+</p>
+<p>
+在你需要使用微信终端API的文件中导入相应的类。
+</p>
+<p class="code">import com.tencent.mm.sdk.openapi.WXTextObject;</p>
+</div>
+<div class="section">
+<h4>4.在代码中使用开发工具包</h4>
+<p>
+[1] 注册到微信
+</p>
+<p>
+要使你的程序启动后微信终端能响应你的程序，必须在代码中向微信终端注册你的id。（如下图所示，可以在程序入口Activity的onCreate回调函数处，或其他合适的地方将你的应用id注册到微信。注册函数示例如下图所示。
+</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image003.png">
+</p>
+<p>
+[2] 发送请求或响应到微信
+</p>
+<p>
+现在，你的程序要发送请求或发送响应到微信终端，可以通过IWXAPI的 <span class="code">sendReq</span> 和 <span class="code">sendResp</span> 两个方法来实现。
+</p>
+<p class="code">
+boolean sendReq(BaseReq req);
+</p>
+<p>
+sendReq是第三方app主动发送消息给微信，发送完成之后会切回到第三方app界面。
+</p>
+<p class="code">
+boolean sendResp(BaseResp resp);
+</p>
+<p>
+sendResp是微信向第三方app请求数据，第三方app回应数据之后会切回到微信界面。
+</p>
+<p>sendReq的实现示例，如下图所示：</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image004.png">
+</p>
+<div style="background: #FFF9E3;">
+<p> 需要注意的是，SendMessageToWX.Req的scene成员，如果scene填WXSceneSession，那么消息会发送至微信的会话内。如果scene填WXSceneTimeline（微信4.2以上支持，如果需要检查微信版本支持API的情况， 可调用<a target="_blank" href="/document/sdk/android/?lang=zh_CN">IWXAPI的getWXAppSupportAPI方法</a>,0x21020001及以上支持发送朋友圈），那么消息会发送至朋友圈。scene默认值为WXSceneSession。
+</p>
+</div>
+<p>
+sendResp的实现与SendReq类似，如下图所示：
+</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image005.png">
+</p>
+<p>
+具体要发送的内容由第三方app开发者定义，具体可参考微信开发工具包中的SDK Sample Demo源码。
+</p>
+<p>[3] 接收微信的请求及返回值</p>
+<p>如果你的程序需要接收微信发送的请求，或者接收发送到微信请求的响应结果，需要下面3步操作：</p>
+<p>a. 在你的包名相应目录下新建一个wxapi目录，并在该wxapi目录下新增一个WXEntryActivity类，该类继承自Activity</p>
+<p>（例如应用程序的包名为net.sourceforge.simcpux，则新添加的类如下图所示）</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image006.png">
+</p>
+<p>并在manifest文件里面加上exported属性，设置为true，例如：</p>
+<p>
+<img src="/static/zh_CN/app/images/gettingstart_android/image007.png">
+</p>
+<p>b. 实现IWXAPIEventHandler接口，微信发送的请求将回调到onReq方法，发送到微信请求的响应结果将回调到onResp方法</p>
+<p>c. 在WXEntryActivity中将接收到的intent及实现了IWXAPIEventHandler接口的对象传递给IWXAPI接口的handleIntent方法，示例如下图：</p>
+<p><img src="/static/zh_CN/app/images/gettingstart_android/image008.png"></p>
+<p>当微信发送请求到你的应用，将通过IWXAPIEventHandler接口的onReq方法进行回调，类似的，应用请求微信的响应结果将通过onResp回调。</p>
+</div>
+<div class="section">
+<div style="background: #FFF9E3;">
+<h4>注意</h4>
+<p>如果需要混淆代码，为了保证sdk的正常使用，需要在proguard.cfg加上下面两行配置：</p>
+<p>-keep class com.tencent.mm.sdk.openapi.WXMediaMessage {*;}
+<p>-keep class com.tencent.mm.sdk.openapi.** implements com.tencent.mm.sdk.openapi.WXMediaMessage$IMediaObject {*;}</p>
+</div>
+</div>
+<div class="">
+<p>
+至此，你已经能使用微信Android开发工具包的API内容了。如果想更详细了解每个API函数的用法，请查阅 <a href="/document/sdk/android/?lang=zh_CN" target="_blank" >Android 平台参考手册</a> 或自行下载阅读微信SDK Sample Demo源码。
+</p>
+<p>
+<a href="/download/sdk/wechat_sdk_sample_android.zip" target="_blank" >微信SDK Sample Demo源码</a>
+</p>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+<div class="indexBottom">
+<img src="/static/zh_CN/app/images/line.png" />
+<div class="clr" style="height:22px"></div>
+<!--<img src="/static/zh_CN/app/images/logo_gray.png"/>-->
+</div>
+<p style="margin:0 auto 10px; width: 156px;">
+<span class="contect_us"></span>
+<!--<a href="mailto:weixinapp@qq.com">联系我们</a>-->
+<a style="margin-right:10px;" href="mailto:weixin_cooperation@qq.com">商务合作</a>
+<a href="mailto:weixinapp@qq.com">技术咨询</a>
+</p>
+<p class="copyright textGray">&copy; 1998 - 2012 Tencent All Rights Reserved.</p>
+</div>
+</div>
+</body>
+</html>
