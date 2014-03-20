@@ -22,10 +22,10 @@
 
 Q：为什么iOS7下面微信旧版SDK无法进行分享
 A：iOS 应用之间共享数据常见的几种方法：
-*1、URL Scheme 应用可以通过构造URL，将数据作为URL的参数传递给其他应用。
-*2、UIPasterboard 不同应用之间通过粘贴板进行数据共享。UIPasterboard主要分为2种:custom pasterboard(自定义粘贴板)以及general pasterboard(通用粘贴板)。custom pasterboard由应用程序创建，由一个name标识，可以任意创建。general pasterboard全局唯一，所有应用共用，任何应用往该粘贴板写入数据都会覆盖之前的数据。
+*1、URL Scheme* 应用可以通过构造URL，将数据作为URL的参数传递给其他应用。
+*2、UIPasterboard* 不同应用之间通过粘贴板进行数据共享。UIPasterboard主要分为2种:custom pasterboard(自定义粘贴板)以及general pasterboard(通用粘贴板)。custom pasterboard由应用程序创建，由一个name标识，可以任意创建。general pasterboard全局唯一，所有应用共用，任何应用往该粘贴板写入数据都会覆盖之前的数据。
 
-*微信通过URL Scheme和UIPasterboard来与第三方应用之间进行交互以及数据共享。
+*微信通过URL* Scheme和UIPasterboard来与第三方应用之间进行交互以及数据共享。
 由于iOS7禁止不同应用之间使用自定义粘贴板，导致了第三方应用在iOS7下分享消息到微信失败。
 SDK1.4.2配合微信5.0.1 使用通用粘贴板替代了自定义粘贴板解决iOS7下分享失败。
 
@@ -81,4 +81,8 @@ A：这里是由于身份校验失败造成的，要运行SDK Demo工程，可以参考文档《如何运行SDK D
 
 Q：为什么日志里面有时候会出现setup profile from amm_manifest.xml failed错误？
 A：这是由于SDK加载内部配置文件失败造成的，不影响SDK的正常使用，可以忽略这个错误日志。
-**更多问题，请邮件联系 weixinapp@qq.com 或关注官方微博 http://t.qq.com/weixin_app 的最新动态。
+**更多问题，请邮件联系 weixinapp@qq.com 或关注官方微博 http://t.qq.com/weixin_app 的最新动态。**
+
+#增加微信支付  2014年3月20日
+
+
